@@ -1,5 +1,5 @@
 (function(){
-    const APP_NAME = 'shortfuts';
+    const APP_NAME = 'teclaCompra';
 
     log('Initializing...');
 
@@ -25,7 +25,7 @@
             case 38 /* up arrow */:
                 move(ev);
                 break;
-            case 8 /* backspace */:
+            case 8 /* backspace */: 
                 goBack();
                 break;
             case 66 /* b */:
@@ -78,10 +78,11 @@
             }
         }
 
-        log('Attempting to go to the previous page...');
+        log('Tentando ir para a página anterior.');
 
         try {
-            const backButton = document.getElementsByClassName('btn-flat back headerButton')[0];
+            const backButton = document.getElementsByClassName('btn-navigation')[0];
+            console.log('clicou em voltar');
             tapElement(backButton);
         } catch (error) {
             log('Unable to go back.', true /* isError */);
@@ -196,14 +197,16 @@
      * Search for the current item to see what other ones on the market are going for.
      */
     function comparePrice() {
-        log('Attempting to search for current item to compare price...');
+        log('Tentando pesquisar o item atual para comparar o preço ...');
 
         try {
             // Tap "Compare Price" button.
-            const quickListPanelActions = getQuickListPanelActions();
-            const buttons = quickListPanelActions.getElementsByTagName('button');
-            const comparePriceButton = buttons[buttons.length - 1];
-            tapElement(comparePriceButton);
+           // const quickListPanelActions = getQuickListPanelActions();
+            // const buttons = quickListPanelActions.getElementsByTagName('button');
+            // const comparePriceButton = buttons[buttons.length - 1];
+
+            tapElement(document.getElementsByClassName('buyButton')[0]);
+           // tapElement(document.getElementsByClassName('flat')[1]);
         } catch (error) {
             log('Unable to locate "Compare Price" button.', true /* isError */);
             return;
