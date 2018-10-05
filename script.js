@@ -9,6 +9,9 @@
         switch (keyCode) {
             case 67 /* c */:
                 comparePrice();
+                break;  
+            case 187 /* = */:
+                search();
                 break;
             case 77 /* m */:
                 listMinBin();
@@ -62,6 +65,41 @@
 
         log('Successfully bought a bronze pack.');
     }
+
+
+
+    
+
+      /**
+     * Goes back.
+     */
+    function search() {
+        /**
+         * Extra check for English language to only allow back button shortcut
+         * on the "Search Results" page.
+         */
+        if (navigator.language.indexOf('en-') > -1) {
+            const pageTitle = document.getElementById('futHeaderTitle');
+            if (pageTitle.innerText.toLowerCase().indexOf('search') === -1) {
+                return;
+            }
+        }
+
+        log('Tentando ir para a página anterior.');
+
+        try {
+            const searchButton = document.getElementsByClassName('call-to-action')[0];
+            console.log('clicou em search');
+            tapElement(searchButton);
+        } catch (error) {
+            log('clicou em search.', true /* isError */);
+            return;
+        }
+
+        log('clicou em search.');
+    }
+
+
 
     /**
      * Goes back.
@@ -206,7 +244,7 @@
             // const comparePriceButton = buttons[buttons.length - 1];
 
             tapElement(document.getElementsByClassName('buyButton')[0]);
-           // tapElement(document.getElementsByClassName('flat')[1]);
+            tapElement(document.getElementsByClassName('flat')[1]);
         } catch (error) {
             log('Unable to locate "Compare Price" button.', true /* isError */);
             return;
